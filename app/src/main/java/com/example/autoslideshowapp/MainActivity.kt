@@ -20,17 +20,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val resolver = contentResolver
-        val cursor = resolver.query(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, // データの種類
-            null, // 項目(null = 全項目)
-            null, // フィルタ条件(null = フィルタなし)
-            null, // フィルタ用パラメータ
-            null // ソート (null ソートなし)
-        )
-        var mTimer: Timer? = null
-        var mHandler = Handler()
-
         // Android 6.0以降の場合
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // パーミッションの許可状態を確認する
@@ -47,6 +36,17 @@ class MainActivity : AppCompatActivity() {
         } else {
         }
 
+
+        val resolver = contentResolver
+        val cursor = resolver.query(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, // データの種類
+            null, // 項目(null = 全項目)
+            null, // フィルタ条件(null = フィルタなし)
+            null, // フィルタ用パラメータ
+            null // ソート (null ソートなし)
+        )
+        var mTimer: Timer? = null
+        var mHandler = Handler()
 
         play.setOnClickListener {
             if (cursor!!.moveToNext()) {
